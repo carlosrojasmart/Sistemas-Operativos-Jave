@@ -1,3 +1,5 @@
+## Repositorio Sistemas Operativos 
+
 Este repositorio contiene materiales y ejercicios relacionados con el curso de Sistemas Operativos. Aquí se exploran:
 
 Funciones y Principios de Diseño: Principios y funciones principales de los sistemas operativos y su relación con el hardware.
