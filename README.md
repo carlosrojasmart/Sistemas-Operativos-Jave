@@ -4,4 +4,5 @@ Funciones y Principios de Diseño: Principios y funciones principales de los sis
 Control de Concurrencia: Problemas de concurrencia y mecanismos para su control.
 Programación Concurrente: Uso de servicios del sistema operativo para implementar programas concurrentes.
 Evaluación de Desempeño: Herramientas y métricas para evaluar el desempeño de programas.
+
 ¡Bienvenido y espero que encuentres útil el contenido!
