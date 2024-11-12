@@ -1,44 +1,37 @@
-#!/usr/bin/perl
+#! /usr/bin/perl                                                                                      lanza.pl                                                                                                  #!/usr/bin/perl
 #**************************************************************
-#     Pontificia Universidad Javeriana
-#     Autor: Carlos Eduardo Rojas
-#     Fecha: 29/10/2024
-#     Materia: Sistemas Operativos
+#                       Pontificia Universidad Javeriana
+#     Autor: J. Corredor
+#     Fecha: Febrero 2024     Materia: Sistemas Operativos
 #     Tema: Taller de Evaluación de Rendimiento
-#     Fichero: script automatización ejecución por lotes 
-#     Descripción: Este script automatiza la ejecución de un 
-#                  programa de multiplicación de matrices en 
-#                  paralelo para varios tamaños y cantidades 
-#                  de hilos, guardando los resultados en archivos.
+#     Fichero: script automatización ejecución por lotes
 #****************************************************************/
 
-# Obtiene el directorio actual
+# Ruta y nombre del ejecutable
 $Path = `pwd`;
 chomp($Path);
+$Nombre_Ejecutable = "MM_ejecutable";
 
-# Configuración de parámetros
-$Nombre_Ejecutable = "MM_ejecutable";  # Nombre del ejecutable a ejecutar
-@Size_Matriz = ("200", "300");         # Tamaños de matriz a probar
-@Num_Hilos = (1, 2);                   # Cantidades de hilos a usar
-$Repeticiones = 2;                     # Número de repeticiones por configuración
+# Crear la carpeta DatosEjecucion si no existe
+mkdir "$Path/DatosEjecucion" unless -d "$Path/DatosEjecucion";
 
-# Bucle para cada tamaño de matriz
-foreach $size (@Size_Matriz) {
-    # Bucle para cada número de hilos
+# Configuración de la batería de experimentos
+@Tamanos_Matriz = (400, 500, 600, 700);
+@Num_Hilos = (1, 2, 4, 8);
+$Repeticiones = 30;
+
+# Ejecuta la batería de experimentos
+foreach $size (@Tamanos_Matriz) {
     foreach $hilo (@Num_Hilos) {
-        # Nombre de archivo para almacenar resultados
-        $file = "$Path/$Nombre_Ejecutable-" . $size . "-Hilos-" . $hilo . ".dat";
-        
-        # Ejecución repetida según número de repeticiones
+        # Define el archivo de salida en la carpeta DatosEjecucion
+        $file = "$Path/DatosEjecucion/${Nombre_Ejecutable}-${size}-Hilos-${hilo}.dat";
+
         for ($i = 0; $i < $Repeticiones; $i++) {
-            # Ejecuta el programa con el tamaño y número de hilos especificados
-            # Guarda la salida en el archivo correspondiente
-            # Descomentar la siguiente línea para ejecutar y almacenar los resultados
+
+            # Ejecuta el programa y guarda la salida en el archivo correspondiente
             system("$Path/$Nombre_Ejecutable $size $hilo >> \"$file\"");
-            
-            # Imprime el comando ejecutado (para fines de verificación)
-            printf("$Path/$Nombre_Ejecutable $size $hilo \n");
+            print "$Path/$Nombre_Ejecutable $size $hilo \n";  # Muestra la ejecución actual en la terminal
+
         }
-        close($file); # Cierra el archivo de resultados
     }
 }
