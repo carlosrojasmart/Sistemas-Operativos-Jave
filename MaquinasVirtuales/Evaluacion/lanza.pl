@@ -34,7 +34,7 @@ foreach $size (@Size_Matriz) {
             # Ejecuta el programa con el tamaño y número de hilos especificados
             # Guarda la salida en el archivo correspondiente
             # Descomentar la siguiente línea para ejecutar y almacenar los resultados
-            # system("$Path/$Nombre_Ejecutable $size $hilo >> $file");
+            system("$Path/$Nombre_Ejecutable $size $hilo >> \"$file\"");
             
             # Imprime el comando ejecutado (para fines de verificación)
             printf("$Path/$Nombre_Ejecutable $size $hilo \n");
